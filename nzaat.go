@@ -15,11 +15,11 @@
 // OUP(s,b) → { OAV(s,b); MIX(s); }
 //      This is the Update function of Jenkins’ one-at-a-time hash
 // NUP(s,b) → { NAV(s,b); MIX(s); }
-//      This shall be the NZATUpdate function
+//      This shall be the body of the for loop in the Write method
 // OAV(s,b) → { ADD(s,b); }
 //      This is how the Add part of Jenkins’ one-at-a-time hash works
 // NAV(s,b) → { ADD(s,b+c); } – c const
-//      This is how the Add part of NZATUpdate differs – by a const
+//      This is how the Add part of Write differs – by a const
 // ADD(x,y) → { x += y; }
 //      Generic addition function
 // MIX(s) → { s += s << 10; s ^= s >> 6; }
