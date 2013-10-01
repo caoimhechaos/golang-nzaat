@@ -3,6 +3,7 @@
 // Use of this source code is governed by a BSD-style license that can
 // be found in the LICENSE file.
 
+// NZAAT originates from Thorsten “mirabilos” Glaser <tg@mirbsd.org>.
 // This file defines the NZAAT hash which is derived from Bob Jenkins’
 // one at a time hash with the goals to ① not have 00000000 as result
 // (for speed optimisations with hash table lookups) and ② change for
@@ -62,6 +63,7 @@
 // have a good result (for NZAAT) while having to provide for exactly
 // one 2-in-1 collision for NZAT manually. This implementation mainly
 // aims for economic code (small, fast, RISC CPUs notwithstanding).
+
 package nzaat
 
 import "hash"
@@ -89,7 +91,7 @@ func (d *digest) BlockSize() int {
 
 func (d *digest) Write(p []byte) (nn int, err error) {
 	for _, x := range p {
-		*d += digest(x)
+		*d += digest(x) + 1
 		*d += *d << 10
 		*d ^= *d >> 6
 	}
